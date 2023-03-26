@@ -1,11 +1,15 @@
 from datetime import datetime as dt
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.model_selection import cross_val_score, train_test_split
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, make_scorer
+from sklearn.model_selection import cross_val_score, train_test_split, GridSearchCV
 import numpy as np
 from sklearn import metrics
 import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 
 from CSVWriter import CSVWriter
 from DataCleaner import DataCleaner
@@ -22,14 +26,22 @@ TESTS_WITH_SAMPLE_NAMES.append(f"train-time")
 TESTS_WITH_SAMPLE_NAMES.append(f"val-time")
 TESTS_WITH_SAMPLE_NAMES.append(f"test-time")
 
-CSV_COLUMNS = ["Model", "Total Compile Time",
+CSV_COLUMNS = ["Model", "Model Best Parameters", "Total Compile Time",
                "Total Sample Size", "Compile Time Per Sample"]
 CSV_COLUMNS.extend(TESTS_WITH_SAMPLE_NAMES)
 
 CSV_FORMAT = {CSV_COLUMNS[i]: i for i in range(len(CSV_COLUMNS))}
 
+# create a string with the current date and time
+now_str = str(dt.now())
+now_str = now_str.replace(':', '-').replace('.', '-')
+now_str = now_str.replace(' ', 'AtTime')
+now_str = ''.join(now_str.split())
+logger = Logger(f"Models-Scores-allModels"+now_str+".txt")
+csvWriter = CSVWriter(f"Models-Scores-allModels"+now_str+".csv", CSV_COLUMNS)
 
 def createFeatureImportancePlot(model, features):
+
     # plot the feature importance to file
     importances = model.feature_importances_
     std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
@@ -44,25 +56,44 @@ def createFeatureImportancePlot(model, features):
     plt.savefig('featureImportancePlot.png')
 
 
-def buildModel(features: pd.DataFrame, answers: pd.DataFrame, model):
+def buildModel(features: pd.DataFrame, answers: pd.DataFrame, classifier, param_grid):
     # from tutorial: https://machinelearningmastery.com/calculate-feature-importance-with-python/
 
+    scorers = {
+        'precision_score': make_scorer(precision_score, average='macro'),
+        'recall_score': make_scorer(recall_score, average='macro'),
+        'accuracy_score': make_scorer(accuracy_score)
+    }
+
     # fit the model
-    model.fit(features, answers)
+    optimizedModel, optimizedModelParameters = grid_search_wrapper(classifier, param_grid, scorers, features, answers)
 
-    return model
+    return optimizedModel, optimizedModelParameters
 
+def grid_search_wrapper(classifier, param_grid, scorers, features: pd.DataFrame, answers: pd.DataFrame, refit_score='precision_score'):
+    """
+    fits a GridSearchCV classifier using refit_score for optimization
+    prints classifier performance metrics
+    from https://www.kaggle.com/code/kevinarvai/fine-tuning-a-classifier-in-scikit-learn/notebook
+    """
+    grid_search = GridSearchCV(classifier, param_grid, scoring=scorers, refit=refit_score, cv=5, return_train_score=True, n_jobs=-1)
+    grid_search.fit(features, answers)
+
+    y_pred = grid_search.predict(features)
+
+    logger.log('Best params for {}'.format(refit_score))
+    logger.log(f"Best params found!{grid_search.best_params_}")
+
+    return grid_search, grid_search.best_params_
 
 def pipeline():
-    logger = Logger(f"Models-Scores-allModels-nobk-macro-concat-ECG.txt")
-    csvWriter = CSVWriter(f"Models-Scores-allModels-nobk-macro-concat-ECG.csv", CSV_COLUMNS)
 
+    logger.log(f"Getting data from datacleaner...")
     answers, features = DataCleaner().getAttributesAndFeatures()
-    # print(features.shape)
-    # print(labelFrame.shape)
-    # print(labelFrame.head())
+    logger.log(f"Got data!")
 
     # 20 / 20 / 60
+    logger.log(f"Splitting data into train test val")
     X_train, X_test, Y_train, Y_test = train_test_split(features, answers, test_size=0.4, random_state=42)
     X_val, X_test, Y_val, Y_test = train_test_split(X_test, Y_test, test_size=0.5, random_state=42)
 
@@ -71,43 +102,56 @@ def pipeline():
     Y_test = np.ravel(Y_test)
     Y_val = np.ravel(Y_val)
 
-    # print(X_train.shape)
-    # print(X_test.shape)
-    # print(y_train.shape)
-    # print(y_test.shape)
+    # DEFINE CLASSIFIERS HERE AND PUT THEM INSIDE
+    rf = RandomForestClassifier()
+    dtc = DecisionTreeClassifier(random_state=42)
+    knn = KNeighborsClassifier(n_neighbors=5)
+    svm = SVC(kernel='linear', random_state=42)
+    mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000, random_state=42)
 
-    rf = RandomForestClassifier(n_estimators=100, random_state=42)
+    # classifiers = [rf, dtc, knn, svm, mlp]
 
-    # # Train random forest classifier
-    # rf = RandomForestClassifier(n_estimators=100, random_state=42)
-    # rf.fit(X_train, Y_train)
-    #
-    # # Predict on testing set
-    # Y_pred = rf.predict(X_test)
-    #
-    # # Evaluate accuracy
-    # accuracy = accuracy_score(Y_test, Y_pred)
-    # print("Accuracy:", accuracy)
-
-    rf = RandomForestClassifier(n_estimators=100, random_state=42)
     classifiers = [rf]
 
-    classifierNames = [
-        "Random Forest",
+    logger.log(
+        f"Created classifiers for {classifiers}")
+
+    # classifierNames = [
+    #     "Random Forest",
+    #     "Decision Tree",
+    #     "K-Nearest Neighbors",
+    #     "Support Vector Machine",
+    #     "Neural Network (MLP)"
+    # ]
+
+    classifiersParamsToOptimize = [
+        #RandomForestClassifier
+        {
+            'min_samples_split': [3, 5, 10],
+            'n_estimators': [100, 300],
+            'max_depth': [3, 5, 15],
+            'max_features': [3, 5, 20]
+        }
     ]
+
+    classifierNames = [
+            "Random Forest",
+    ]
+
+    logger.log(
+        f"Starting to build models..... {classifiers}")
 
     for i, classifier in enumerate(classifiers):
         model_name = 'model-' + \
                      f"{classifierNames[i]}-" + f"" + '.model'
         modelCompileTime = (dt.now() - dt.now())
 
-        # model = ModelSaver[StackingClassifier]().readModel(model_name)
         model = None
 
         logger.log(f"Building Model on: {classifierNames[i]}")
 
         startTime = dt.now()
-        model = buildModel(X_train, Y_train, classifier)
+        model, modelBestParameters = buildModel(X_train, Y_train, classifier, classifiersParamsToOptimize[i])
         modelCompileTime = (dt.now() - startTime)
         logger.log(
             f"Time elapsed: (hh:mm:ss:ms) {modelCompileTime}")
@@ -119,6 +163,7 @@ def pipeline():
 
         row = [" "] * len(CSV_COLUMNS)
         row[CSV_FORMAT["Model"]] = classifierNames[i]
+        row[CSV_FORMAT["Model Best Parameters"]] = modelBestParameters
         row[CSV_FORMAT["Total Compile Time"]] = modelCompileTime
         row[CSV_FORMAT["Total Sample Size"]] = len(X_train.index)
         row[CSV_FORMAT["Compile Time Per Sample"]
@@ -177,7 +222,8 @@ def pipeline():
 
         csvWriter.addRow(row)
 
-    createFeatureImportancePlot(rf, features)
+        #plot only works for random forest
+        #createFeatureImportancePlot(classifier, features)
 
 
 if __name__ == '__main__':

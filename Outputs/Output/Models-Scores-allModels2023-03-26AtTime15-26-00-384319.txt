@@ -1,24 +1,31 @@
-### 2023-03-26_13-37-56 ### 
+### 2023-03-26_15-26-00 ### 
+Getting data from datacleaner... 
+Got data! 
+Splitting data into train test val 
+Created classifiers for [RandomForestClassifier()] 
+Starting to build models..... [RandomForestClassifier()] 
 Building Model on: Random Forest 
-Time elapsed: (hh:mm:ss:ms) 0:00:00.987111 
+Best params for precision_score 
+Best params found!{'max_depth': 15, 'max_features': 5, 'min_samples_split': 5, 'n_estimators': 300} 
+Time elapsed: (hh:mm:ss:ms) 0:01:34.709155 
 Saving Model as: model-Random Forest-.model 
 Time elapsed: (hh:mm:ss:ms) 0:00:00 
 Possible tests: dict_keys(['explained_variance', 'r2', 'max_error', 'matthews_corrcoef', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_absolute_percentage_error', 'neg_mean_squared_error', 'neg_mean_squared_log_error', 'neg_root_mean_squared_error', 'neg_mean_poisson_deviance', 'neg_mean_gamma_deviance', 'accuracy', 'top_k_accuracy', 'roc_auc', 'roc_auc_ovr', 'roc_auc_ovo', 'roc_auc_ovr_weighted', 'roc_auc_ovo_weighted', 'balanced_accuracy', 'average_precision', 'neg_log_loss', 'neg_brier_score', 'positive_likelihood_ratio', 'neg_negative_likelihood_ratio', 'adjusted_rand_score', 'rand_score', 'homogeneity_score', 'completeness_score', 'v_measure_score', 'mutual_info_score', 'adjusted_mutual_info_score', 'normalized_mutual_info_score', 'fowlkes_mallows_score', 'precision', 'precision_macro', 'precision_micro', 'precision_samples', 'precision_weighted', 'recall', 'recall_macro', 'recall_micro', 'recall_samples', 'recall_weighted', 'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted', 'jaccard', 'jaccard_macro', 'jaccard_micro', 'jaccard_samples', 'jaccard_weighted']) 
 Testing model on Train 
-Time elapsed: (hh:mm:ss:ms) 0:00:00.031707 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.093148 
 train-accuracy_score: 1.0 
 train-precision_score: 1.0 
 train-recall_score: 1.0 
 train-f1_score: 1.0 
 Testing model on val 
-Time elapsed: (hh:mm:ss:ms) 0:00:00.015153 
-val-accuracy_score: 0.839 
-val-precision_score: 0.8399518148499562 
-val-recall_score: 0.8393999497544673 
-val-f1_score: 0.8384206640586815 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.041228 
+val-accuracy_score: 0.834 
+val-precision_score: 0.8359161271863252 
+val-recall_score: 0.8347754413965519 
+val-f1_score: 0.8329732979209208 
 Testing model on test 
-Time elapsed: (hh:mm:ss:ms) 0:00:00.015148 
-test-accuracy_score: 0.839 
-test-precision_score: 0.8405815211912682 
-test-recall_score: 0.8417551112606177 
-test-f1_score: 0.8387416712565616 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.042318 
+test-accuracy_score: 0.853 
+test-precision_score: 0.85510447920735 
+test-recall_score: 0.8557380512450496 
+test-f1_score: 0.8527198771341089 

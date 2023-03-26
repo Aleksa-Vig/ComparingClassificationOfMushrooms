@@ -1,2 +1,0 @@
-Model,Total Compile Time,Total Sample Size,Compile Time Per Sample,train-accuracy_score,val-accuracy_score,test-accuracy_score,train-precision_score,val-precision_score,test-precision_score,train-recall_score,val-recall_score,test-recall_score,train-f1_score,val-f1_score,test-f1_score,train-time,val-time,test-time
-Random Forest,0:00:00.987111,3000,0.00032903699999999996,1.0,0.839,0.839,1.0,0.8399518148499562,0.8405815211912682,1.0,0.8393999497544673,0.8417551112606177,1.0,0.8384206640586815,0.8387416712565616,1.0569e-05,1.5153e-05,1.5148e-05
