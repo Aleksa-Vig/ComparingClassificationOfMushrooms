@@ -148,7 +148,6 @@ def pipeline():
         #Neural Network
         {
             "activation": ["identity", "logistic", "tanh", "relu"],
-            "solver": ["lbfgs", "sgd", "adam"],
             "batch_size": [4, 6, 8],
             "learning_rate": ["constant", "invscaling", "adaptive"]
         }
