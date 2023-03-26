@@ -34,11 +34,11 @@ CSV_FORMAT = {CSV_COLUMNS[i]: i for i in range(len(CSV_COLUMNS))}
 
 # create a string with the current date and time
 now_str = str(dt.now())
-now_str = now_str.replace(':', '-').replace('.', '-')
+now_str = now_str.replace(':', ';').replace('.', '-')
 now_str = now_str.replace(' ', 'AtTime')
 now_str = ''.join(now_str.split())
-logger = Logger(f"Models-Scores-allModels"+now_str+".txt")
-csvWriter = CSVWriter(f"Models-Scores-allModels"+now_str+".csv", CSV_COLUMNS)
+logger = Logger(f"Optimized-Models-Scores-allModels"+now_str+".txt")
+csvWriter = CSVWriter(f"Optimized-Models-Scores-allModels"+now_str+".csv", CSV_COLUMNS)
 
 def createFeatureImportancePlot(model, features):
 
@@ -104,25 +104,23 @@ def pipeline():
 
     # DEFINE CLASSIFIERS HERE AND PUT THEM INSIDE
     rf = RandomForestClassifier()
-    dtc = DecisionTreeClassifier(random_state=42)
-    knn = KNeighborsClassifier(n_neighbors=5)
-    svm = SVC(kernel='linear', random_state=42)
-    mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000, random_state=42)
+    dtc = DecisionTreeClassifier()
+    knn = KNeighborsClassifier()
+    svm = SVC()
+    mlp = MLPClassifier()
 
-    # classifiers = [rf, dtc, knn, svm, mlp]
-
-    classifiers = [rf]
+    classifiers = [rf, dtc, knn, svm, mlp]
 
     logger.log(
         f"Created classifiers for {classifiers}")
 
-    # classifierNames = [
-    #     "Random Forest",
-    #     "Decision Tree",
-    #     "K-Nearest Neighbors",
-    #     "Support Vector Machine",
-    #     "Neural Network (MLP)"
-    # ]
+    classifierNames = [
+        "Random Forest",
+        "Decision Tree",
+        "K-Nearest Neighbors",
+        "Support Vector Machine",
+        "Neural Network (MLP)"
+    ]
 
     classifiersParamsToOptimize = [
         #RandomForestClassifier
@@ -131,11 +129,30 @@ def pipeline():
             'n_estimators': [100, 300],
             'max_depth': [3, 5, 15],
             'max_features': [3, 5, 20]
+        },
+        #Decision Tree Params
+        {
+            "splitter": ["best", "random"],
+            "max_depth": [5, 10, 15],
+            "max_features": [5, 10, 20]
+        },
+        #KNN params
+        {
+            "n_neighbors": [5, 10, 15],
+            "weights": ["uniform", "distance"]
+        },
+        # SVM params
+        {
+            "kernel": ["linear", "poly", "rbf"]
+        },
+        #Neural Network
+        {
+            "activation": ["identity", "logistic", "tanh", "relu"],
+            "solver": ["lbfgs", "sgd", "adam"],
+            "batch_size": [4, 6, 8],
+            "learning_rate": ["constant", "invscaling", "adaptive"]
         }
-    ]
 
-    classifierNames = [
-            "Random Forest",
     ]
 
     logger.log(

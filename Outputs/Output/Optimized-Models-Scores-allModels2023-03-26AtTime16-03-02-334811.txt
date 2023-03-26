@@ -1,0 +1,131 @@
+### 2023-03-26_16-03-02 ### 
+Getting data from datacleaner... 
+Got data! 
+Splitting data into train test val 
+Created classifiers for [RandomForestClassifier(), DecisionTreeClassifier(), KNeighborsClassifier(), SVC(), MLPClassifier()] 
+Starting to build models..... [RandomForestClassifier(), DecisionTreeClassifier(), KNeighborsClassifier(), SVC(), MLPClassifier()] 
+Building Model on: Random Forest 
+Best params for precision_score 
+Best params found!{'max_depth': 15, 'max_features': 3, 'min_samples_split': 5, 'n_estimators': 300} 
+Time elapsed: (hh:mm:ss:ms) 0:00:47.169664 
+Saving Model as: model-Random Forest-.model 
+Time elapsed: (hh:mm:ss:ms) 0:00:00 
+Possible tests: dict_keys(['explained_variance', 'r2', 'max_error', 'matthews_corrcoef', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_absolute_percentage_error', 'neg_mean_squared_error', 'neg_mean_squared_log_error', 'neg_root_mean_squared_error', 'neg_mean_poisson_deviance', 'neg_mean_gamma_deviance', 'accuracy', 'top_k_accuracy', 'roc_auc', 'roc_auc_ovr', 'roc_auc_ovo', 'roc_auc_ovr_weighted', 'roc_auc_ovo_weighted', 'balanced_accuracy', 'average_precision', 'neg_log_loss', 'neg_brier_score', 'positive_likelihood_ratio', 'neg_negative_likelihood_ratio', 'adjusted_rand_score', 'rand_score', 'homogeneity_score', 'completeness_score', 'v_measure_score', 'mutual_info_score', 'adjusted_mutual_info_score', 'normalized_mutual_info_score', 'fowlkes_mallows_score', 'precision', 'precision_macro', 'precision_micro', 'precision_samples', 'precision_weighted', 'recall', 'recall_macro', 'recall_micro', 'recall_samples', 'recall_weighted', 'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted', 'jaccard', 'jaccard_macro', 'jaccard_micro', 'jaccard_samples', 'jaccard_weighted']) 
+Testing model on Train 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.098609 
+train-accuracy_score: 1.0 
+train-precision_score: 1.0 
+train-recall_score: 1.0 
+train-f1_score: 1.0 
+Testing model on val 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.043656 
+val-accuracy_score: 0.835 
+val-precision_score: 0.8378716676557968 
+val-recall_score: 0.8359864884932685 
+val-f1_score: 0.8337940187446885 
+Testing model on test 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.045771 
+test-accuracy_score: 0.862 
+test-precision_score: 0.8649188486145007 
+test-recall_score: 0.8649267010857112 
+test-f1_score: 0.8615662913271228 
+Building Model on: Decision Tree 
+Best params for precision_score 
+Best params found!{'max_depth': 5, 'max_features': 20} 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.251192 
+Saving Model as: model-Decision Tree-.model 
+Time elapsed: (hh:mm:ss:ms) 0:00:00 
+Possible tests: dict_keys(['explained_variance', 'r2', 'max_error', 'matthews_corrcoef', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_absolute_percentage_error', 'neg_mean_squared_error', 'neg_mean_squared_log_error', 'neg_root_mean_squared_error', 'neg_mean_poisson_deviance', 'neg_mean_gamma_deviance', 'accuracy', 'top_k_accuracy', 'roc_auc', 'roc_auc_ovr', 'roc_auc_ovo', 'roc_auc_ovr_weighted', 'roc_auc_ovo_weighted', 'balanced_accuracy', 'average_precision', 'neg_log_loss', 'neg_brier_score', 'positive_likelihood_ratio', 'neg_negative_likelihood_ratio', 'adjusted_rand_score', 'rand_score', 'homogeneity_score', 'completeness_score', 'v_measure_score', 'mutual_info_score', 'adjusted_mutual_info_score', 'normalized_mutual_info_score', 'fowlkes_mallows_score', 'precision', 'precision_macro', 'precision_micro', 'precision_samples', 'precision_weighted', 'recall', 'recall_macro', 'recall_micro', 'recall_samples', 'recall_weighted', 'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted', 'jaccard', 'jaccard_macro', 'jaccard_micro', 'jaccard_samples', 'jaccard_weighted']) 
+Testing model on Train 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.001505 
+train-accuracy_score: 0.8063333333333333 
+train-precision_score: 0.8086751062730583 
+train-recall_score: 0.8064366492913847 
+train-f1_score: 0.8046127974434244 
+Testing model on val 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.001002 
+val-accuracy_score: 0.724 
+val-precision_score: 0.7259182538999512 
+val-recall_score: 0.7248310250665376 
+val-f1_score: 0.7220530990999499 
+Testing model on test 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.000954 
+test-accuracy_score: 0.748 
+test-precision_score: 0.7498104828927005 
+test-recall_score: 0.7512077812825183 
+test-f1_score: 0.7474364878603609 
+Building Model on: K-Nearest Neighbors 
+Best params for precision_score 
+Best params found!{'n_neighbors': 15, 'weights': 'uniform'} 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.520008 
+Saving Model as: model-K-Nearest Neighbors-.model 
+Time elapsed: (hh:mm:ss:ms) 0:00:00 
+Possible tests: dict_keys(['explained_variance', 'r2', 'max_error', 'matthews_corrcoef', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_absolute_percentage_error', 'neg_mean_squared_error', 'neg_mean_squared_log_error', 'neg_root_mean_squared_error', 'neg_mean_poisson_deviance', 'neg_mean_gamma_deviance', 'accuracy', 'top_k_accuracy', 'roc_auc', 'roc_auc_ovr', 'roc_auc_ovo', 'roc_auc_ovr_weighted', 'roc_auc_ovo_weighted', 'balanced_accuracy', 'average_precision', 'neg_log_loss', 'neg_brier_score', 'positive_likelihood_ratio', 'neg_negative_likelihood_ratio', 'adjusted_rand_score', 'rand_score', 'homogeneity_score', 'completeness_score', 'v_measure_score', 'mutual_info_score', 'adjusted_mutual_info_score', 'normalized_mutual_info_score', 'fowlkes_mallows_score', 'precision', 'precision_macro', 'precision_micro', 'precision_samples', 'precision_weighted', 'recall', 'recall_macro', 'recall_micro', 'recall_samples', 'recall_weighted', 'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted', 'jaccard', 'jaccard_macro', 'jaccard_micro', 'jaccard_samples', 'jaccard_weighted']) 
+Testing model on Train 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.100654 
+train-accuracy_score: 0.8793333333333333 
+train-precision_score: 0.8801029095935484 
+train-recall_score: 0.8794603654731731 
+train-f1_score: 0.8790867465853521 
+Testing model on val 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.036034 
+val-accuracy_score: 0.828 
+val-precision_score: 0.8281390346292007 
+val-recall_score: 0.828268131284296 
+val-f1_score: 0.8275398148571106 
+Testing model on test 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.040047 
+test-accuracy_score: 0.836 
+test-precision_score: 0.8364398704021346 
+test-recall_score: 0.8374046285327054 
+test-f1_score: 0.8360632377650828 
+Building Model on: Support Vector Machine 
+Best params for precision_score 
+Best params found!{'kernel': 'rbf'} 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.790295 
+Saving Model as: model-Support Vector Machine-.model 
+Time elapsed: (hh:mm:ss:ms) 0:00:00 
+Possible tests: dict_keys(['explained_variance', 'r2', 'max_error', 'matthews_corrcoef', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_absolute_percentage_error', 'neg_mean_squared_error', 'neg_mean_squared_log_error', 'neg_root_mean_squared_error', 'neg_mean_poisson_deviance', 'neg_mean_gamma_deviance', 'accuracy', 'top_k_accuracy', 'roc_auc', 'roc_auc_ovr', 'roc_auc_ovo', 'roc_auc_ovr_weighted', 'roc_auc_ovo_weighted', 'balanced_accuracy', 'average_precision', 'neg_log_loss', 'neg_brier_score', 'positive_likelihood_ratio', 'neg_negative_likelihood_ratio', 'adjusted_rand_score', 'rand_score', 'homogeneity_score', 'completeness_score', 'v_measure_score', 'mutual_info_score', 'adjusted_mutual_info_score', 'normalized_mutual_info_score', 'fowlkes_mallows_score', 'precision', 'precision_macro', 'precision_micro', 'precision_samples', 'precision_weighted', 'recall', 'recall_macro', 'recall_micro', 'recall_samples', 'recall_weighted', 'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted', 'jaccard', 'jaccard_macro', 'jaccard_micro', 'jaccard_samples', 'jaccard_weighted']) 
+Testing model on Train 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.220425 
+train-accuracy_score: 0.907 
+train-precision_score: 0.9075584578020198 
+train-recall_score: 0.9070246748878362 
+train-f1_score: 0.9068355617462713 
+Testing model on val 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.074013 
+val-accuracy_score: 0.858 
+val-precision_score: 0.858059622329514 
+val-recall_score: 0.8583742614555488 
+val-f1_score: 0.8577876815746793 
+Testing model on test 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.073746 
+test-accuracy_score: 0.857 
+test-precision_score: 0.8581635805330533 
+test-recall_score: 0.8590254925189768 
+test-f1_score: 0.8569359666869757 
+Building Model on: Neural Network (MLP) 
+Best params for precision_score 
+Best params found!{'batch_size': 6, 'learning_rate': 'adaptive'} 
+Time elapsed: (hh:mm:ss:ms) 0:00:32.982989 
+Saving Model as: model-Neural Network (MLP)-.model 
+Time elapsed: (hh:mm:ss:ms) 0:00:00 
+Possible tests: dict_keys(['explained_variance', 'r2', 'max_error', 'matthews_corrcoef', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_absolute_percentage_error', 'neg_mean_squared_error', 'neg_mean_squared_log_error', 'neg_root_mean_squared_error', 'neg_mean_poisson_deviance', 'neg_mean_gamma_deviance', 'accuracy', 'top_k_accuracy', 'roc_auc', 'roc_auc_ovr', 'roc_auc_ovo', 'roc_auc_ovr_weighted', 'roc_auc_ovo_weighted', 'balanced_accuracy', 'average_precision', 'neg_log_loss', 'neg_brier_score', 'positive_likelihood_ratio', 'neg_negative_likelihood_ratio', 'adjusted_rand_score', 'rand_score', 'homogeneity_score', 'completeness_score', 'v_measure_score', 'mutual_info_score', 'adjusted_mutual_info_score', 'normalized_mutual_info_score', 'fowlkes_mallows_score', 'precision', 'precision_macro', 'precision_micro', 'precision_samples', 'precision_weighted', 'recall', 'recall_macro', 'recall_micro', 'recall_samples', 'recall_weighted', 'f1', 'f1_macro', 'f1_micro', 'f1_samples', 'f1_weighted', 'jaccard', 'jaccard_macro', 'jaccard_micro', 'jaccard_samples', 'jaccard_weighted']) 
+Testing model on Train 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.004000 
+train-accuracy_score: 1.0 
+train-precision_score: 1.0 
+train-recall_score: 1.0 
+train-f1_score: 1.0 
+Testing model on val 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.001950 
+val-accuracy_score: 0.821 
+val-precision_score: 0.8208973719463032 
+val-recall_score: 0.8211919815482833 
+val-f1_score: 0.8209775780498975 
+Testing model on test 
+Time elapsed: (hh:mm:ss:ms) 0:00:00.002873 
+test-accuracy_score: 0.84 
+test-precision_score: 0.8404905444431137 
+test-recall_score: 0.8397134508911087 
+test-f1_score: 0.8400397790773632 
