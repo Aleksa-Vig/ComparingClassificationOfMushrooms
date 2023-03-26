@@ -38,17 +38,17 @@ class DataCleaner:
         featuresFrame = dataframe.iloc[:, :40]  # Select the rest of the columns for attributes
         return labelFrame, featuresFrame
 
-    def encodeDataToNumerical(self, dataframe: pd.DataFrame) -> pd.DataFrame:
-
-        labelsToLoop = dataframe.columns
-        le = LabelEncoder()
-
-        for label in labelsToLoop:
-            encodedColumnContents = le.fit_transform(dataframe[label])
-            dataframe.drop(label, axis=1, inplace=True)
-            dataframe[label] = encodedColumnContents
-
-        return dataframe
+    # def encodeDataToNumerical(self, dataframe: pd.DataFrame) -> pd.DataFrame:
+    #
+    #     labelsToLoop = dataframe.columns
+    #     le = LabelEncoder()
+    #
+    #     for label in labelsToLoop:
+    #         encodedColumnContents = le.fit_transform(dataframe[label])
+    #         dataframe.drop(label, axis=1, inplace=True)
+    #         dataframe[label] = encodedColumnContents
+    #
+    #     return dataframe
 
 # if __name__ == "__main__":
 #     # pd.set_option('display.max_columns', 50)
