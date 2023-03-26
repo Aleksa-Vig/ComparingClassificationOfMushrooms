@@ -1,4 +1,5 @@
-# ComparingClassificationOfMushrooms
+# ComparingClassificationUCI
+
 COMP3710 project. Using Sklearn to compare different models on the UC Irvine mushroom dataset
 
 How to run
