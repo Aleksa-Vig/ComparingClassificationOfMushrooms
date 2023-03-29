@@ -2,6 +2,7 @@
 
 A repo to compare and contrast classification techniques using scikit learn to compare different models on the UC [Irvine Waveform Dataset](https://archive-beta.ics.uci.edu/datasets?search=Waveform%20Database%20Generator%20(Version%202)).
 
+Please see FAQ for questions on how to find the results...
 ## How to run
 
 1. Make sure your venv for python is activiated (if on pycharm this should be automatic): \
@@ -31,5 +32,12 @@ to see how each model UNOPTIMIZED performed and their respective statistics
 
 ## FAQ
 
- I can't run the repo! I am missing dependencies! \
-``If by chance all dependencies dont install, please use pip to manually install any missing packages to the virtual environment``
+### Where can I see the results? 
+Our final results can be found in ```Outputs\Output``` in the \
+``OK-Optimized-Models-Scores-allModels2023-03-26AtTime16;20;57-509561.csv`` 
+and ``OK-Reg-Models-Scores-allModels2023-03-26AtTime15-56-35-804754.csv`` for Optimized and Unoptimized 
+performance/statistics respectively. Any new generated data can also be found in this folder with the time and date
+of creation the file name.
+
+### I can't run the repo! I am missing dependencies! 
+If by chance all dependencies don't install, please use ``pip`` to manually install any missing packages to the virtual environment
