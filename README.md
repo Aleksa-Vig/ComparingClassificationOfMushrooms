@@ -1,6 +1,6 @@
 # ComparingClassificationUCI
 
-A repo to compare and contrast classification techniques using scikit learn to compare different models on the UC [Irvine Waveform Dataset](https://archive-beta.ics.uci.edu/datasets?search=Waveform%20Database%20Generator%20(Version%202)).
+A repo to compare and contrast classification techniques using scikit learn on the UC [Irvine Waveform Dataset](https://archive-beta.ics.uci.edu/datasets?search=Waveform%20Database%20Generator%20(Version%202)).
 
 Please see FAQ for questions on how to find the results...
 ## How to run
