@@ -1,14 +1,35 @@
 # ComparingClassificationUCI
 
-COMP3710 project. Using Sklearn to compare different models on the UC Irvine mushroom dataset
+A repo to compare and contrast classification techniques using scikit learn to compare different models on the UC [Irvine Waveform Dataset](https://archive-beta.ics.uci.edu/datasets?search=Waveform%20Database%20Generator%20(Version%202)).
 
-How to run
+## How to run
 
-Make sure your venv for python is activiated(if on pycharm this should be automatic) \
+1. Make sure your venv for python is activiated (if on pycharm this should be automatic): \
 ``(venv) PS C:\..... <--present in terminal ``
 
-Install the dependencies using pip \
+
+2. Install the dependencies using pip \
 ``pip install -r requirements.txt ``
 
-Run main \
-``python main.py``
+
+3. Run the optimized pipeline (This trains, fits, and then outputs performance statistics on the models) \
+``python OptimizedPipeline.py``
+
+
+4. Check the Outputs/Output/ Optimized*.csv (Any file prepended with Optimized) \
+to see how each OPTIMIZED model performed and their respective statistics  
+``Statistics in the csv include: hyperparameter-set, accuracy, precision, recall, f1 score, and execution times``
+
+
+5. (Optional) Run the un-optimized pipeline Reg-*.csv \
+``python OptimizedPipeline.py``
+
+
+6. (Optional) Check the Outputs/Output/ Reg*.csv (Any file prepended with Reg) \
+to see how each model UNOPTIMIZED performed and their respective statistics  
+``Statistics in the csv include: hyperparameter-set, accuracy, precision, recall, f1 score, and execution times``
+
+## FAQ
+
+ I can't run the repo! I am missing dependencies! \
+``If by chance all dependencies dont install, please use pip to manually install any missing packages to the virtual environment``
